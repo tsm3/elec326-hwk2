@@ -1,0 +1,70 @@
+There are three problems with associated files.
+
+Problem 1: Unsigned Integer Comparator 
+cmp.v:	   Template for "cmp" module you must complete
+cmp_tb.v   Testbench module to exercise and verify your solution
+
+After entring your program in "cmp.v" compile using iVerilog.
+
+% iv cmp.v cmp_tb.v
+
+Edit and correct errors as necessary. Then execute as:
+
+% ./a.out
+
+Check the outputs are correct.
+-----------------------------------------------------------
+
+Problem 2: Multiply a BCD integer in the range 0 .. 499 by 2
+doubleBCD.v:	   Template for "doybleBCD" module you must complete
+doubleBCD_tb.v     Testbench module to exercise and verify your solution
+
+After entring your program in "doubleBCD.v" compile using iVerilog.
+
+% iv doubleBCD.v doubleBCD_tb.v
+
+Edit and correct errors as necessary. Then execute as:
+
+% ./a.out
+
+Check the outputs are correct.
+
+-----------------------------------------------------------
+
+Problem 3: Convert an unsigned  binary integer in the range 0..255 to its 3 digit BCD representation
+doubleBCD.v:	   Use your working solution from Problem 2
+bin2BCD.v          Template for "bin2BCD" module you must complete
+bin2BCD_tb.v 	   Testbench module to exercise and verify your solution
+
+After entring your program in "bin2BCD.v" compile using iVerilog. Since your solution will use the module "doubleBCD"
+from Problem 2, include the "doubleBCD.v" file while compiling as below. 
+
+% iv bin2BCD.v doubleBCD.v bin2BCD_tb.v
+
+Edit and correct errors as necessary. Then execute as:
+
+% ./a.out
+
+Check the outputs are correct.
+
+
+
+ Unix HINTS:
+-------------
+To see the output a screenfull at a time:
+
+%  ./a.out | more 
+
+(b)  To redirect  the output in a file called "out" to be displayed later.
+
+%  ./a.out > out
+
+(c) To display "out" use:
+
+%  more out
+
+Use spacebar to scroll to next screenfull
+
+
+
+
