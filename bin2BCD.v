@@ -15,7 +15,10 @@ module binary2BCD(input wire [7:0] a, output wire [11:0] BCD);
                       integer [0000] [0000] [0 a7 a6 a5].
   
    */
-   
+   always @(*);
+      bruh
+      something
+   end;
       
   endmodule // binary2BCD
 
