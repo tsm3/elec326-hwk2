@@ -31,6 +31,7 @@ cmp1 comp3 (x[3], y[3], lileq[3], lilgt[3]);
 assign lillt = ~lileq & ~lilgt; // This is bit-wise and
 
 assign EQ = (lileq == 4'b1111) ? 1'b1 : 1'b0;
+// Here, did more scratchwork to find this expression, checks if MSB is LT, and if not, evals other bits seperately iff MSB is EQ
 assign LT = lillt[3] || (lileq[3] && lillt[2]) || (lileq[3] && lileq[2] && lillt[1]) || (lileq[3] && lileq[2] && lileq[1] && lillt[0]);
 
    // Set EQ to 1 if the 4-bit number x and  y are equal; else set EQ to 0
