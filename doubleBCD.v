@@ -24,10 +24,15 @@ module doubleBCD(input wire [11:0] a, output wire [11:0] B);
    
    // Convert to binary then left shift then convert to BCD?
 
-    assign nib1 = (a[11:8] > 4) ? a[11:8] + 2'd3 : a[11:8];
-    assign nib2 = (a[7:4] > 4) ? a[7:4] + 2'd3 : a[7:4];
-    assign nib3 = (a[3:0] > 4) ? a[3:0] + 2'd3 : a[3:0];
+    wire[3:0] nib1; 
+    wire[3:0] nib2; 
+    wire[3:0] nib3; 
 
+    cAdd3 adder1(a[11:8], nib1);
+    cAdd3 adder2(a[7:4], nib2);
+    cAdd3 adder3(a[3:0], nib3);
+
+    
     assign B[11:8] = nib1 << 1;
     assign B[7:4] = nib2 << 1;
     assign B[3:0] = nib3 << 1;  
