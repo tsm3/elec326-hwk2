@@ -32,13 +32,13 @@ module doubleBCD(input wire [11:0] a, output wire [11:0] B);
     cAdd3 adder2(a[7:4], nib2);
     cAdd3 adder3(a[3:0], nib3);
 
-    
-    assign B[11:8] = nib1 << 1;
+    assign B[3:0] = nib3 << 1;      
     assign B[7:4] = nib2 << 1;
-    assign B[3:0] = nib3 << 1;  
+    assign B[11:8] = nib1 << 1;
+
 
    always@(*) begin
-        $display("nib1 = %b\tnib2 = %b\tnib3 = %b", nib1, nib2, nib3);
+        // $display("nib1 = %b\tnib2 = %b\tnib3 = %b", nib1, nib2, nib3);
         $display("B = %x\tB_bin = %b\n", B,  B);
     end
 endmodule 
