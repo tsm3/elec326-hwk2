@@ -1,0 +1,168 @@
+#! /storage-home/p/pjv/326/Verilog/bin/vvp
+:ivl_version "0.10.0 (devel)" "(s20090923)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x1bc2790 .scope module, "cmp_tb" "cmp_tb" 2 2;
+ .timescale 0 0;
+v0x1bef900_0 .net "EQL", 0 0, L_0x1bf1660; 1 drivers
+v0x1befb30_0 .net "LTR", 0 0, L_0x1bf2890; 1 drivers
+v0x1befbe0_0 .var/i "i", 31 0;
+v0x1befc60_0 .var/i "j", 31 0;
+v0x1befce0_0 .var "p", 3 0;
+v0x1befd90_0 .var "q", 3 0;
+E_0x1bc6a70/0 .event edge, v0x1bef7b0_0, v0x1bef9c0_0, v0x1bee640_0, v0x1bee700_0;
+E_0x1bc6a70/1 .event edge, v0x1befc60_0, v0x1befbe0_0;
+E_0x1bc6a70 .event/or E_0x1bc6a70/0, E_0x1bc6a70/1;
+S_0x1bc21d0 .scope module, "myComparator" "comparator" 2 7, 3 15 0, S_0x1bc2790;
+ .timescale 0 0;
+RS_0x7f447e4cc768 .resolv tri, L_0x1bf01a0, L_0x1bf0690, L_0x1bf0dc0, L_0x1bf11b0;
+L_0x1bf14a0 .functor NOT 4, RS_0x7f447e4cc768, C4<0000>, C4<0000>, C4<0000>;
+RS_0x7f447e4cc798 .resolv tri, L_0x1bf0290, L_0x1bf07d0, L_0x1bf0e60, L_0x1bf12e0;
+L_0x1bf1500 .functor NOT 4, RS_0x7f447e4cc798, C4<0000>, C4<0000>, C4<0000>;
+L_0x1bf1560 .functor AND 4, L_0x1bf14a0, L_0x1bf1500, C4<1111>, C4<1111>;
+L_0x1bf1410 .functor AND 1, L_0x1bf1930, L_0x1bf19d0, C4<1>, C4<1>;
+L_0x1bf1b20 .functor OR 1, L_0x1bf17a0, L_0x1bf1410, C4<0>, C4<0>;
+L_0x1bf1250 .functor AND 1, L_0x1bf1c20, L_0x1bf1dd0, C4<1>, C4<1>;
+L_0x1bf20a0 .functor AND 1, L_0x1bf1250, L_0x1bf1f70, C4<1>, C4<1>;
+L_0x1bf2150 .functor OR 1, L_0x1bf1b20, L_0x1bf20a0, C4<0>, C4<0>;
+L_0x1bf2410 .functor AND 1, L_0x1bf22a0, L_0x1bf1e70, C4<1>, C4<1>;
+L_0x1bf2340 .functor AND 1, L_0x1bf2410, L_0x1bf2510, C4<1>, C4<1>;
+L_0x1bf27e0 .functor AND 1, L_0x1bf2340, L_0x1bf2740, C4<1>, C4<1>;
+L_0x1bf2890 .functor OR 1, L_0x1bf2150, L_0x1bf27e0, C4<0>, C4<0>;
+v0x1bee640_0 .alias "EQ", 0 0, v0x1bef900_0;
+v0x1bee700_0 .alias "LT", 0 0, v0x1befb30_0;
+v0x1bee7a0_0 .net *"_s32", 3 0, L_0x1bf14a0; 1 drivers
+v0x1bee840_0 .net *"_s34", 3 0, L_0x1bf1500; 1 drivers
+v0x1bee8f0_0 .net *"_s38", 3 0, C4<1111>; 1 drivers
+v0x1bee990_0 .net *"_s43", 0 0, L_0x1bf17a0; 1 drivers
+v0x1beea70_0 .net *"_s45", 0 0, L_0x1bf1930; 1 drivers
+v0x1beeb10_0 .net *"_s47", 0 0, L_0x1bf19d0; 1 drivers
+v0x1beec00_0 .net *"_s48", 0 0, L_0x1bf1410; 1 drivers
+v0x1beeca0_0 .net *"_s50", 0 0, L_0x1bf1b20; 1 drivers
+v0x1beeda0_0 .net *"_s53", 0 0, L_0x1bf1c20; 1 drivers
+v0x1beee40_0 .net *"_s55", 0 0, L_0x1bf1dd0; 1 drivers
+v0x1beef50_0 .net *"_s56", 0 0, L_0x1bf1250; 1 drivers
+v0x1beeff0_0 .net *"_s59", 0 0, L_0x1bf1f70; 1 drivers
+v0x1bef110_0 .net *"_s60", 0 0, L_0x1bf20a0; 1 drivers
+v0x1bef1b0_0 .net *"_s62", 0 0, L_0x1bf2150; 1 drivers
+v0x1bef070_0 .net *"_s65", 0 0, L_0x1bf22a0; 1 drivers
+v0x1bef300_0 .net *"_s67", 0 0, L_0x1bf1e70; 1 drivers
+v0x1bef420_0 .net *"_s68", 0 0, L_0x1bf2410; 1 drivers
+v0x1bef4a0_0 .net *"_s71", 0 0, L_0x1bf2510; 1 drivers
+v0x1bef380_0 .net *"_s72", 0 0, L_0x1bf2340; 1 drivers
+v0x1bef5d0_0 .net *"_s75", 0 0, L_0x1bf2740; 1 drivers
+v0x1bef520_0 .net *"_s76", 0 0, L_0x1bf27e0; 1 drivers
+v0x1bef710_0 .net8 "lileq", 3 0, RS_0x7f447e4cc768; 4 drivers
+v0x1bef670_0 .net8 "lilgt", 3 0, RS_0x7f447e4cc798; 4 drivers
+v0x1bef860_0 .net "lillt", 3 0, L_0x1bf1560; 1 drivers
+v0x1bef7b0_0 .net "x", 3 0, v0x1befce0_0; 1 drivers
+v0x1bef9c0_0 .net "y", 3 0, v0x1befd90_0; 1 drivers
+L_0x1beffc0 .part v0x1befce0_0, 0, 1;
+L_0x1bf00b0 .part v0x1befd90_0, 0, 1;
+L_0x1bf01a0 .part/pv L_0x1beed20, 0, 1, 4;
+L_0x1bf0290 .part/pv L_0x1befea0, 0, 1, 4;
+L_0x1bf0550 .part v0x1befce0_0, 1, 1;
+L_0x1bf05f0 .part v0x1befd90_0, 1, 1;
+L_0x1bf0690 .part/pv L_0x1bf0380, 1, 1, 4;
+L_0x1bf07d0 .part/pv L_0x1bf03e0, 1, 1, 4;
+L_0x1bf0b00 .part v0x1befce0_0, 2, 1;
+L_0x1bf0c30 .part v0x1befd90_0, 2, 1;
+L_0x1bf0dc0 .part/pv L_0x1bf0960, 2, 1, 4;
+L_0x1bf0e60 .part/pv L_0x1bf09c0, 2, 1, 4;
+L_0x1bf0ff0 .part v0x1befce0_0, 3, 1;
+L_0x1bf1090 .part v0x1befd90_0, 3, 1;
+L_0x1bf11b0 .part/pv L_0x1bf0d60, 3, 1, 4;
+L_0x1bf12e0 .part/pv L_0x1bf0f00, 3, 1, 4;
+L_0x1bf1660 .cmp/eq 4, RS_0x7f447e4cc768, C4<1111>;
+L_0x1bf17a0 .part L_0x1bf1560, 3, 1;
+L_0x1bf1930 .part RS_0x7f447e4cc768, 3, 1;
+L_0x1bf19d0 .part L_0x1bf1560, 2, 1;
+L_0x1bf1c20 .part RS_0x7f447e4cc768, 3, 1;
+L_0x1bf1dd0 .part RS_0x7f447e4cc768, 2, 1;
+L_0x1bf1f70 .part L_0x1bf1560, 1, 1;
+L_0x1bf22a0 .part RS_0x7f447e4cc768, 3, 1;
+L_0x1bf1e70 .part RS_0x7f447e4cc768, 2, 1;
+L_0x1bf2510 .part RS_0x7f447e4cc768, 1, 1;
+L_0x1bf2740 .part L_0x1bf1560, 0, 1;
+S_0x1bee2a0 .scope module, "comp0" "cmp1" 3 24, 3 1 0, S_0x1bc21d0;
+ .timescale 0 0;
+L_0x1beed20 .functor XNOR 1, L_0x1beffc0, L_0x1bf00b0, C4<0>, C4<0>;
+v0x1bee390_0 .net "Eq", 0 0, L_0x1beed20; 1 drivers
+v0x1bee450_0 .net "Gt", 0 0, L_0x1befea0; 1 drivers
+v0x1bee4f0_0 .net "a", 0 0, L_0x1beffc0; 1 drivers
+v0x1bee590_0 .net "b", 0 0, L_0x1bf00b0; 1 drivers
+L_0x1befea0 .cmp/gt 1, L_0x1beffc0, L_0x1bf00b0;
+S_0x1bedf00 .scope module, "comp1" "cmp1" 3 25, 3 1 0, S_0x1bc21d0;
+ .timescale 0 0;
+L_0x1bf0380 .functor XNOR 1, L_0x1bf0550, L_0x1bf05f0, C4<0>, C4<0>;
+v0x1bedff0_0 .net "Eq", 0 0, L_0x1bf0380; 1 drivers
+v0x1bee0b0_0 .net "Gt", 0 0, L_0x1bf03e0; 1 drivers
+v0x1bee150_0 .net "a", 0 0, L_0x1bf0550; 1 drivers
+v0x1bee1f0_0 .net "b", 0 0, L_0x1bf05f0; 1 drivers
+L_0x1bf03e0 .cmp/gt 1, L_0x1bf0550, L_0x1bf05f0;
+S_0x1bedb60 .scope module, "comp2" "cmp1" 3 27, 3 1 0, S_0x1bc21d0;
+ .timescale 0 0;
+L_0x1bf0960 .functor XNOR 1, L_0x1bf0b00, L_0x1bf0c30, C4<0>, C4<0>;
+v0x1bedc50_0 .net "Eq", 0 0, L_0x1bf0960; 1 drivers
+v0x1bedd10_0 .net "Gt", 0 0, L_0x1bf09c0; 1 drivers
+v0x1beddb0_0 .net "a", 0 0, L_0x1bf0b00; 1 drivers
+v0x1bede50_0 .net "b", 0 0, L_0x1bf0c30; 1 drivers
+L_0x1bf09c0 .cmp/gt 1, L_0x1bf0b00, L_0x1bf0c30;
+S_0x1bad930 .scope module, "comp3" "cmp1" 3 28, 3 1 0, S_0x1bc21d0;
+ .timescale 0 0;
+L_0x1bf0d60 .functor XNOR 1, L_0x1bf0ff0, L_0x1bf1090, C4<0>, C4<0>;
+v0x1bade10_0 .net "Eq", 0 0, L_0x1bf0d60; 1 drivers
+v0x1bed970_0 .net "Gt", 0 0, L_0x1bf0f00; 1 drivers
+v0x1beda10_0 .net "a", 0 0, L_0x1bf0ff0; 1 drivers
+v0x1bedab0_0 .net "b", 0 0, L_0x1bf1090; 1 drivers
+L_0x1bf0f00 .cmp/gt 1, L_0x1bf0ff0, L_0x1bf1090;
+    .scope S_0x1bc2790;
+T_0 ;
+    %set/v v0x1befce0_0, 0, 4;
+    %set/v v0x1befd90_0, 0, 4;
+    %vpi_call 2 16 "$display", "Time\011p q\011EQ   LT\012";
+    %end;
+    .thread T_0;
+    .scope S_0x1bc2790;
+T_1 ;
+    %wait E_0x1bc6a70;
+    %set/v v0x1befbe0_0, 0, 32;
+T_1.0 ;
+    %load/v 8, v0x1befbe0_0, 32;
+   %cmpi/s 8, 16, 32;
+    %jmp/0xz T_1.1, 5;
+    %set/v v0x1befc60_0, 0, 32;
+T_1.2 ;
+    %load/v 8, v0x1befc60_0, 32;
+   %cmpi/s 8, 16, 32;
+    %jmp/0xz T_1.3, 5;
+    %delay 1, 0;
+    %vpi_call 2 25 "$display", "%3d\011%x %x\011%x   %x\012", $time, v0x1befce0_0, v0x1befd90_0, v0x1bef900_0, v0x1befb30_0;
+    %load/v 40, v0x1befd90_0, 4;
+    %load/v 44, v0x1befce0_0, 4;
+    %mov 8, 40, 8;
+    %mov 16, 0, 24;
+   %addi 8, 1, 32;
+    %set/v v0x1befd90_0, 8, 4;
+    %set/v v0x1befce0_0, 12, 4;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v0x1befc60_0, 32;
+    %set/v v0x1befc60_0, 8, 32;
+    %jmp T_1.2;
+T_1.3 ;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v0x1befbe0_0, 32;
+    %set/v v0x1befbe0_0, 8, 32;
+    %jmp T_1.0;
+T_1.1 ;
+    %vpi_call 2 29 "$finish";
+    %jmp T_1;
+    .thread T_1, $push;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "cmp_tb.v";
+    "cmp.v";

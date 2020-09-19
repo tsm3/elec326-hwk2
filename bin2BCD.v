@@ -43,21 +43,6 @@ module binary2BCD(input wire [7:0] a, output wire [11:0] BCD);
    assign last2 = {last[11:1], a[0]};
    assign BCD = last2;
 
-   always@(*) begin
-      $display("con1 = %b\n", connector1);
-
-      $display("con2 = %b\n", connector2);
-
-      $display("con3 = %b\n", connector3);
-
-      $display("con4 = %b\n", connector4);
-
-      $display("con5 = %b\n", connector5);
-
-      $display("last = %b\n", last);
-
-      $display("BCD- = %b\n", BCD);
-   end
          
   endmodule // binary2BCD
 
