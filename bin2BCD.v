@@ -23,7 +23,7 @@ module binary2BCD(input wire [7:0] a, output wire [11:0] BCD);
    wire[11:0] connector5;
    wire[11:0] last;
 
-   assign connector1 = {10'd0,a[7:5]};
+   assign connector1 = {9'd0, a[7:5]};
 
    doubleBCD doubler1(connector1, connector2);
    assign connector2[0] = a[4];
