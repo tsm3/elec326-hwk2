@@ -15,11 +15,27 @@ module binary2BCD(input wire [7:0] a, output wire [11:0] BCD);
                       integer [0000] [0000] [0 a7 a6 a5].
   
    */
-   always @(*);
-      bruh
-      something
-   end;
-      
+
+   wire[11:0] connector1;
+   wire[11:0] connector2;
+   wire[11:0] connector3;
+   wire[11:0] connector4;
+   wire[11:0] connector5;
+   wire[11:0] last;
+
+   assign connector1[2:0] = a[7:5];
+   doubleBCD doubler1(connector1, connector2);
+   assign connector2[0] = a[4];
+   doubleBCD doubler2(connector2, connector3);
+   assign connector3[0] = a[3];
+   doubleBCD doubler3(connector3, connector4);
+   assign connector4[0] = a[2];
+   doubleBCD doubler4(connector4, connector5);
+   assign connector5[0] = a[1];
+   doubleBCD doubler5(connector5, last);
+   assign last[0] = a[0];
+   assign BCD = last;
+         
   endmodule // binary2BCD
 
 
