@@ -27,7 +27,7 @@ module doubleBCD(input wire [11:0] a, output wire [11:0] B);
     wire[3:0] nib1; 
     wire[3:0] nib2; 
     wire[3:0] nib3; 
-
+    wire[11:0] temp;
 
     cAdd3 adder1(a[11:8], nib1);
     cAdd3 adder2(a[7:4], nib2);
@@ -37,10 +37,10 @@ module doubleBCD(input wire [11:0] a, output wire [11:0] B);
     // assign B[7:4] = nib2 << 1;
     // assign B[11:8] = nib1 << 1;
 
-    assign B[3:0] = nib3;
-    assign B[7:4] = nib2;
-    assign B[3:0] = nib1;
-    assign B = B << 1;
+    assign temp[3:0] = nib3;
+    assign temp[7:4] = nib2;
+    assign temp[11:8] = nib1;
+    assign B = temp << 1;
 
 endmodule 
 
