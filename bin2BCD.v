@@ -39,12 +39,24 @@ module binary2BCD(input wire [7:0] a, output wire [11:0] BCD);
 
    always@(*) begin
       $display("con1 = %b\n", connector1);
+   end
+   always@(*) begin
       $display("con2 = %b\n", connector2);
+   end
+   always@(*) begin
       $display("con3 = %b\n", connector3);
+   end
+   always@(*) begin
       $display("con4 = %b\n", connector4);
+   end
+   always@(*) begin
       $display("con5 = %b\n", connector5);
+   end
+   always@(*) begin
       $display("last = %b\n", last);
-      $display("BCD = %b\n", BCD);
+   end
+   always@(*) begin
+      $display("BCD- = %b\n", BCD);
    end
          
   endmodule // binary2BCD
