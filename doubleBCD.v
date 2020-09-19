@@ -22,8 +22,6 @@ module doubleBCD(input wire [11:0] a, output wire [11:0] B);
 // Note: There is no overflow as long as the input is less than 500.
 // METHOD: Instantiate 3 "cAdd3" modules. Wire up the modules using any glue logic needed.
    
-   // Convert to binary then left shift then convert to BCD?
-
     wire[3:0] nib1; 
     wire[3:0] nib2; 
     wire[3:0] nib3; 
