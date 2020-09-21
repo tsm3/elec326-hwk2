@@ -1,0 +1,2 @@
+alias iv='~pjv/326/Verilog/bin/iverilog'
+

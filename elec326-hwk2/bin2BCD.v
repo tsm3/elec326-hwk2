@@ -27,20 +27,25 @@ module binary2BCD(input wire [7:0] a, output wire [11:0] BCD);
    wire[11:0] con32;
    wire[11:0] con42;
    wire[11:0] con52;
-   wire[11:0] last2;
+   wire[11:0] last2;  
 
    assign connector1 = {9'b000000000, a[7:5]};
 
    doubleBCD doubler1(connector1, connector2);
    assign con22 = {connector2[11:1], a[4]};
+
    doubleBCD doubler2(con22, connector3);
    assign con32 = {connector3[11:1], a[3]};
+
    doubleBCD doubler3(con32, connector4);
    assign con42 = {connector4[11:1], a[2]};
+
    doubleBCD doubler4(con42, connector5);
    assign con52 = {connector5[11:1], a[1]};
+
    doubleBCD doubler5(con52, last);
    assign last2 = {last[11:1], a[0]};
+
    assign BCD = last2;
 
          
