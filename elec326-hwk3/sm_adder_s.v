@@ -40,8 +40,8 @@ module sm_adder_s( input wire [4:0] a, b, output wire [4:0] SUM, output wire OVF
 
 
 
-   assign X4cIN = cIN & a[4];
-   assign Y4cIN = cIN & b[4];
+   assign X4cIN = cIN & GT;
+   assign Y4cIN = cIN & (~GT & ~EQ);
 
    //mux2 muxX(X4cIN, a[3:0], ~a[3:0], X2);
    assign X2 = a[3:0] ^ {4{X4cIN}};
