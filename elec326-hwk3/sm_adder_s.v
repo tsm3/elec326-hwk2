@@ -30,13 +30,15 @@ module sm_adder_s( input wire [4:0] a, b, output wire [4:0] SUM, output wire OVF
    wire cIN;
    wire X4cIN, Y4cIN;
 
-   
+
+   assign cIN = a[4] ^ b[4]; //XOR -> 1 if sign bits are different, 0 if same
+
+
    comparator comp(a[3:0], b[3:0], EQ, GT);
-   mux2 muxSign(GT, {trashIn1, a[4]}, {trashIn2, b[4]}, {trash, A4});
-   assign SUM[4] = A4 & ~EQ;
+   mux2 muxSign(GT, {trashIn1, a[4]}, {trashIn2, b[4]}, {trash, A4}); //not sure how to fix this padding shit
+   assign SUM[4] = A4 & (~EQ & cIN); //here
 
 
-   assign cIN = a[4] ~^ b[4]; //XNOR
    assign X4cIN = cIN & a[4];
    assign Y4cIN = cIN & b[4];
 
