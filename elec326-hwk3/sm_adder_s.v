@@ -35,7 +35,8 @@ module sm_adder_s( input wire [4:0] a, b, output wire [4:0] SUM, output wire OVF
    
 
    comparator comp(a[3:0], b[3:0], EQ, GT);
-   mux2 muxSign(GT, {trashIn1, a[4]}, {trashIn2, b[4]}, {trashOUT, A}); //not sure how to fix this padding shit
+   //mux2 muxSign(GT, {trashIn1, a[4]}, {trashIn2, b[4]}, {trashOUT, A}); //not sure how to fix this padding shit
+   assign A = (a[4] & GT) | (b[4] & ~GT);
    //assign SUM[4] = A & (EQ ~& cIN); //here trying to make sure no -0
 
 
