@@ -32,7 +32,7 @@ module sm_adder_s( input wire [4:0] a, b, output wire [4:0] SUM, output wire OVF
 
 
    assign cIN = a[4] ^ b[4]; //XOR -> 1 if sign bits are different, 0 if same
-
+   
 
    comparator comp(a[3:0], b[3:0], EQ, GT);
    mux2 muxSign(GT, {trashIn1, a[4]}, {trashIn2, b[4]}, {trashOUT, A}); //not sure how to fix this padding shit
@@ -47,9 +47,9 @@ module sm_adder_s( input wire [4:0] a, b, output wire [4:0] SUM, output wire OVF
    assign X2 = a[3:0] ^ {4{X4cIN}};
    //mux2 muxY(Y4cIN, b[3:0], ~b[3:0], Y2);
    assign Y2 = b[3:0] ^ {4{Y4cIN}};
-   ripple_carry_adder add(X2, Y2, cIN, SUM[3:0], OVFLW);
+   ripple_carry_adder add(X2, Y2, cIN, SUM[3:0], tempOV);
    assign SUM[4] = A & (SUM[3] | SUM[2] | SUM[1] | SUM[0]); // fucking stupid way to make sure never a -0
-
+   assign OVFLW = tempOV & ~cIN;
 
 
 
