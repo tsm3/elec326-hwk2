@@ -24,6 +24,7 @@ module sm_adder_s( input wire [4:0] a, b, output wire [4:0] SUM, output wire OVF
    wire[3:0] X2, Y2;
    wire[3:0] bruh;
    
+   wire[2:0] trashOUT, trashIn1, trashIn2;
 
    wire EQ, GT, A4;
    wire cIN;
@@ -31,14 +32,14 @@ module sm_adder_s( input wire [4:0] a, b, output wire [4:0] SUM, output wire OVF
 
    
    comparator comp(a[3:0], b[3:0], EQ, GT);
-   mux2 muxSign(GT, a[4], b[4], A4);
+   mux2 muxSign(GT, {trashIn1, a[4]}, {trashIn2, b[4]}, {trash, A4});
    assign SUM[4] = A4 & ~EQ;
 
 
-   assign cIN = a[4] ^ b[4];
+   assign cIN = a[4] ~^ b[4]; //XNOR
    assign X4cIN = cIN & a[4];
    assign Y4cIN = cIN & b[4];
-   
+
    mux2 muxX(X4cIN, a[3:0], ~a[3:0], X2);
    mux2 muxY(Y4cIN, b[3:0], ~b[3:0], Y2);
    ripple_carry_adder add(X2, Y2, cIN, SUM[3:0], OVFLW);
