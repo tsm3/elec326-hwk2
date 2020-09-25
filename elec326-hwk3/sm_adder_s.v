@@ -20,36 +20,34 @@ module sm_adder_s( input wire [4:0] a, b, output wire [4:0] SUM, output wire OVF
    // Instantiate the modules defined above as required by your schematic.
    // Glue modules together using simple assign statements to implement gate logic.
 
-   wire[3:0] tempsum;
    wire[3:0] X2, Y2;
-   wire[3:0] bruh;
    
-   wire[2:0] trashOUT, trashIn1, trashIn2;
-
    wire EQ, GT, A;
    wire cIN;
    wire X4cIN, Y4cIN;
+   wire tempOV;
 
 
-   assign cIN = a[4] ^ b[4]; //XOR -> 1 if sign bits are different, 0 if same
+   assign cIN = a[4] ^ b[4]; //XOR -> 1 if sign bits are different, 0 if same, need the 1 because it functions as the 2s complement's "add one"
    
 
    comparator comp(a[3:0], b[3:0], EQ, GT);
-   //mux2 muxSign(GT, {trashIn1, a[4]}, {trashIn2, b[4]}, {trashOUT, A}); //not sure how to fix this padding shit
-   assign A = (a[4] & GT) | (b[4] & ~GT);
-   //assign SUM[4] = A & (EQ ~& cIN); //here trying to make sure no -0
+
+   assign A = (a[4] & GT) | (b[4] & ~GT); // if GT, then sign should match a, else should match b, if sign(a)=sign(b), then can match either, and if EQ, then the 0 case is handled later
 
 
 
-   assign X4cIN = cIN & ~GT;
-   assign Y4cIN = cIN & GT;
+   assign X4cIN = cIN & ~GT; // this decides which of the signals to 2s complement for subtraction (if either) (we want to make the smaller number neg. so we only have to 2s complement once)
+   assign Y4cIN = cIN & GT; // since we have an extra bit for the sign, we don't need the sign to be correct for the subtraction (when we subtract), just need magnitude
 
-   //mux2 muxX(X4cIN, a[3:0], ~a[3:0], X2);
-   assign X2 = a[3:0] ^ {4{X4cIN}};
-   //mux2 muxY(Y4cIN, b[3:0], ~b[3:0], Y2);
-   assign Y2 = b[3:0] ^ {4{Y4cIN}};
-   ripple_carry_adder add(X2, Y2, cIN, SUM[3:0], tempOV);
-   assign SUM[4] = A & (SUM[3] | SUM[2] | SUM[1] | SUM[0]); // fucking stupid way to make sure never a -0
+   //mux2 muxX(X4cIN, a[3:0], ~a[3:0], X2); // Don't need this MUX becasue of the XOR below
+   assign X2 = a[3:0] ^ {4{X4cIN}}; // {n{m}} concatenates n copies of m, so this would be a 4 bit long extension of X4cIN (this would flip 'a' if it was decided to 2s complement it above), else X2 = a[3:0]
+
+   //mux2 muxY(Y4cIN, b[3:0], ~b[3:0], Y2); // Don't need this MUX because of the XOR below
+   assign Y2 = b[3:0] ^ {4{Y4cIN}}; // this would flip 'b' if it was decided to 2s complement it above, else assigns b[3:0] to Y2
+
+   ripple_carry_adder add(X2, Y2, cIN, SUM[3:0], tempOV); //tempOV just in case we have false overflow from 2s complement subtraction
+   assign SUM[4] = A & (SUM[3] | SUM[2] | SUM[1] | SUM[0]); // if no 1s in SUM[3:0], make sure SUM[4] is 0 (positive 0s only)
    assign OVFLW = tempOV & ~cIN;
 
 
