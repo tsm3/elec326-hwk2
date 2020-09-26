@@ -1,16 +1,16 @@
 module ripple_carry_adder(input wire [n-1:0]x, y, input wire cin, output wire [n-1:0] Sum, output wire Cout);  // Parameterized Ripple Carry Adder - 8 bit
-   parameter n = 4;
+   parameter n = 8;
    assign {Cout, Sum} = x + y + cin;
 endmodule // ripple_carry_adder
 
 module comparator(input wire [n-1:0] x, y,  output wire EQ, GT);  // Parametrized Comparator - 8 bit
-   parameter n = 4;
+   parameter n = 8;
    assign EQ = (x == y);
    assign GT = (x > y);
 endmodule // comparator
 
 module mux2(input wire c, input wire [n-1:0] a,b, output wire [n-1:0] X); // Parameterized 2-input n-bit MUX
-   parameter n = 4;
+   parameter n = 1;
    assign X = (c) ? a : b;
 endmodule // mux2
 
@@ -31,7 +31,7 @@ module sm_adder_s( input wire [4:0] a, b, output wire [4:0] SUM, output wire OVF
    assign cIN = a[4] ^ b[4]; //XOR -> 1 if sign bits are different, 0 if same, need the 1 because it functions as the 2s complement's "add one"
    
 
-   comparator comp(a[3:0], b[3:0], EQ, GT);
+   comparator #(4) comp(a[3:0], b[3:0], EQ, GT);
 
    assign A = (a[4] & GT) | (b[4] & ~GT); // if GT, then sign should match a, else should match b, if sign(a)=sign(b), then can match either, and if EQ, then the 0 case is handled later
 
@@ -46,7 +46,7 @@ module sm_adder_s( input wire [4:0] a, b, output wire [4:0] SUM, output wire OVF
    //mux2 muxY(Y4cIN, b[3:0], ~b[3:0], Y2); // Don't need this MUX because of the XOR below
    assign Y2 = b[3:0] ^ {4{Y4cIN}}; // this would flip 'b' if it was decided to 2s complement it above, else assigns b[3:0] to Y2
 
-   ripple_carry_adder add(X2, Y2, cIN, SUM[3:0], tempOV); //tempOV just in case we have false overflow from 2s complement subtraction
+   ripple_carry_adder #(4) add(X2, Y2, cIN, SUM[3:0], tempOV); //tempOV just in case we have false overflow from 2s complement subtraction
    assign SUM[4] = A & (SUM[3] | SUM[2] | SUM[1] | SUM[0]); // if no 1s in SUM[3:0], make sure SUM[4] is 0 (positive 0s only)
    assign OVFLW = tempOV & ~cIN;
 
