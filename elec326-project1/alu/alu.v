@@ -137,5 +137,8 @@ module alu (
 		reg_borrow_out_po = stb_cmd_pi | borrow_in_pi; // Or here and above?
 	end
 
+	assign alu_result_po = reg_alu_result_po;
+	assign carry_out_po = reg_carry_out_po;
+	assign borrow_out_po = reg_borrow_out_po;
 
 endmodule // alu
