@@ -216,6 +216,7 @@ module decoder(
 
 			`BC: begin
 				reg_branch_carry_po = 1'b1; // This one guarantees in[11:6] = 0
+				reg_source_reg2_po = 3'b000; // Manually fixing, not sure what I'm really supposed to do here
 				//reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
 			end
 
