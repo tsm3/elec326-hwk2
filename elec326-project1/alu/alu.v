@@ -70,7 +70,72 @@ module alu (
 	output 	      borrow_out_po // Propagate borrow_in unless an arithmetic/STB instruction generates a new borrow
 );
 
-   
+	reg[15:0] reg_alu_result_po = 16'd0;
+	reg reg_carry_out_po = 1'b0;
+	reg reg_borrow_out_po = 1'b0;
+
+
+
+	always @(*) begin
+		reg_carry_out_po = carry_in_pi; // what if carry in is 1 -> that's ADDC, but how know if set carry???
+		reg_borrow_out_po = borrow_in_pi;
+
+		if (arith_2op_pi) begin
+			case (alu_func_pi) // Don't need a default here because the functions span all possibilities for 3 bits
+				`ADD: begin
+					{reg_carry_out_po, reg_alu_result_po} = reg1_data_pi + reg2_data_pi; // Should I set here?? also see ADDC
+				end
+
+				`ADDC: begin
+					{reg_carry_out_po, reg_alu_result_po} = reg1_data_pi + reg2_data_pi + carry_in_pi; // Or here??
+				end
+
+				`SUB: begin
+					{reg_borrow_out_po, reg_alu_result_po} = reg1_data_pi - reg2_data_pi; // what fuck borrow out??
+				end
+
+				`SUBB: begin
+					{reg_borrow_out_po, reg_alu_result_po} = reg1_data_pi - reg2_data_pi - borrow_in_pi; // minus this?
+				end
+
+				`AND: begin
+					reg_alu_result_po = reg1_data_pi & reg2_data_pi;
+				end
+
+				`OR: begin
+					reg_alu_result_po = reg1_data_pi | reg2_data_pi;
+				end
+
+				`XOR: begin
+					reg_alu_result_po = reg1_data_pi ^ reg2_data_pi;
+				end
+
+				`XNOR : begin
+					reg_alu_result_po = reg1_data_pi ~^ reg2_data_pi;
+				end
+				
+			endcase
+		end 
+		else if (arith_1op_pi) begin
+			case (alu_func_pi) 
+				`NOT: reg_alu_result_po = ~reg1_data_pi;
+				`SHIFTL: reg_alu_result_po = reg1_data_pi << 1;
+				`SHIFTR: reg_alu_result_po = reg1_data_pi >> 1;
+				`CP: reg_alu_result_po = reg1_data_pi;
+			endcase
+		end
+		else if (addi_pi) begin
+			{reg_carry_out_po, reg_alu_result_po} = reg1_data_pi + immediate_pi;
+		end
+		else if (subi_pi) begin
+			{reg_borrow_out_po, reg_alu_result_po} = reg1_data_pi - immediate_pi;
+		end
+		else if (load_or_store_pi) begin
+			reg_alu_result_po = reg1_data_pi + immediate_pi;
+		end 
+		reg_carry_out_po = stc_cmd_pi | carry_in_pi; // Or here and below?
+		reg_borrow_out_po = stb_cmd_pi | borrow_in_pi; // Or here and above?
+	end
 
 
 endmodule // alu
