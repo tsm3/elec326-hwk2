@@ -1,0 +1,54 @@
+A bunch of test Verilog programs: "foo1" through "foo4".
+
+Each file has two modules: A module that implements some  combinational logic, and
+an associated Testbench module ("tb"). The testbench exercises the combinational logic 
+module with a suite of input vectors and records the response of the circuit.
+
+The Verilog compiler is in "pjv" home directory on CLEAR.
+The  file "alias.txt"  shows the complete pathname for the iverilog compiler:
+     	   ~pjv/326/Verilog/bin/iverilog
+
+
+You can compile using:
+% ~pjv/326/Verilog/bin/iverilog foo1.v
+
+Execute using:
+% ./a.out
+
+Observe the output and verify that it makes sense.
+
+
+Alias
+-----
+To avoid having to remember and type in the long string to  access the iverilog compiler,
+it is convenient to set up an alias for it.
+
+You can type the line shown in the file "alias.txt" on the command line (just need to do it once).
+Or more simply type the command:
+
+% source ./alias.txt
+
+You should then be able to invoke iverilog using the alias "iv".
+To compile "foo1.v"  simply type:
+
+% iv foo1.v
+
+Some Unix Shortcuts:
+----------------------
+1. The "Up Arrow" key allows you to scrill through previous commands. Find a command you want and simply press enter instead of typing it again.
+ 
+2. The "TAB" key can be used for automatic completion of commands and file names.
+
+3. To repeat an earlier command you can use the exclamation mark (!) key.
+
+|iv executes the last command beginning with "iv"
+!n executes the last command beginning with "n", for instance your last invovation of "nan0" (editor)
+
+BE CAREFUL: 
+   You may do something terrible like Deleting all your files if you dont pay attention while using shortcuts!
+   It remembers command across sessions, and while 
+        rm *
+   (which deletes all your files) may have made sense in some context, 
+   repeating it in your main directory using
+       !r
+    can be  very unpleasant!

@@ -1,0 +1,114 @@
+#! /storage-home/p/pjv/326/Verilog/bin/vvp
+:ivl_version "0.10.0 (devel)" "(s20090923)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x88f160 .scope module, "foo_testbench" "foo_testbench" 2 15;
+ .timescale 0 0;
+v0x8b8190_0 .net "V", 0 0, L_0x8b8a80; 1 drivers
+v0x8b8440_0 .net "W", 0 0, L_0x8b8d50; 1 drivers
+v0x8b84c0_0 .net "X", 0 0, L_0x8b9750; 1 drivers
+v0x8b8540_0 .net "Y", 0 0, L_0x8b9970; 1 drivers
+v0x8b85f0_0 .net "Z", 0 0, L_0x8ba000; 1 drivers
+v0x8b86a0_0 .var/i "i", 31 0;
+v0x8b8720_0 .var "p", 0 0;
+v0x8b87a0_0 .var "q", 0 0;
+E_0x87b6c0/0 .event edge, v0x8b7e20_0, v0x8b7d60_0, v0x8b7f90_0, v0x8b7ea0_0;
+E_0x87b6c0/1 .event edge, v0x8b8110_0, v0x8b8010_0, v0x8b82a0_0, v0x8b86a0_0;
+E_0x87b6c0 .event/or E_0x87b6c0/0, E_0x87b6c0/1;
+S_0x88e5b0 .scope module, "myFoo3" "foo3" 2 20, 2 3 0, S_0x88f160;
+ .timescale 0 0;
+L_0x8b8240 .functor AND 1, v0x8b8720_0, v0x8b87a0_0, C4<1>, C4<1>;
+L_0x8b7180 .functor NOT 1, v0x8b8720_0, C4<0>, C4<0>, C4<0>;
+L_0x8b88f0 .functor NOT 1, v0x8b87a0_0, C4<0>, C4<0>, C4<0>;
+L_0x8b8950 .functor AND 1, L_0x8b7180, L_0x8b88f0, C4<1>, C4<1>;
+L_0x8b8a80 .functor OR 1, L_0x8b8240, L_0x8b8950, C4<0>, C4<0>;
+L_0x8b8bd0 .functor XOR 1, v0x8b8720_0, v0x8b87a0_0, C4<0>, C4<0>;
+L_0x8b8d50 .functor NOT 1, L_0x8b8bd0, C4<0>, C4<0>, C4<0>;
+L_0x8b9310 .functor AND 1, L_0x8b8f20, L_0x8b91d0, C4<1>, C4<1>;
+L_0x8b9460 .functor XNOR 1, v0x8b8720_0, C4<0>, C4<0>, C4<0>;
+L_0x8b9590 .functor XNOR 1, v0x8b87a0_0, C4<0>, C4<0>, C4<0>;
+L_0x8b96a0 .functor AND 1, L_0x8b9460, L_0x8b9590, C4<1>, C4<1>;
+L_0x8b9750 .functor OR 1, L_0x8b9310, L_0x8b96a0, C4<0>, C4<0>;
+L_0x8b9640 .functor XNOR 1, v0x8b8720_0, v0x8b87a0_0, C4<0>, C4<0>;
+L_0x8b9e90 .functor NOT 1, v0x8b87a0_0, C4<0>, C4<0>, C4<0>;
+v0x89ddd0_0 .net *"_s0", 0 0, L_0x8b8240; 1 drivers
+v0x8b6b60_0 .net *"_s10", 0 0, L_0x8b8bd0; 1 drivers
+v0x8b6c00_0 .net *"_s14", 1 0, L_0x8b8db0; 1 drivers
+v0x8b6ca0_0 .net *"_s17", 0 0, C4<0>; 1 drivers
+v0x8b6d50_0 .net *"_s18", 1 0, C4<01>; 1 drivers
+v0x8b6df0_0 .net *"_s2", 0 0, L_0x8b7180; 1 drivers
+v0x8b6ed0_0 .net *"_s20", 0 0, L_0x8b8f20; 1 drivers
+v0x8b6f70_0 .net *"_s22", 1 0, L_0x8b9060; 1 drivers
+v0x8b7060_0 .net *"_s25", 0 0, C4<0>; 1 drivers
+v0x8b7100_0 .net *"_s26", 1 0, C4<01>; 1 drivers
+v0x8b7200_0 .net *"_s28", 0 0, L_0x8b91d0; 1 drivers
+v0x8b72a0_0 .net *"_s30", 0 0, L_0x8b9310; 1 drivers
+v0x8b73b0_0 .net *"_s32", 0 0, C4<0>; 1 drivers
+v0x8b7450_0 .net *"_s34", 0 0, L_0x8b9460; 1 drivers
+v0x8b7570_0 .net *"_s36", 0 0, C4<0>; 1 drivers
+v0x8b7610_0 .net *"_s38", 0 0, L_0x8b9590; 1 drivers
+v0x8b74d0_0 .net *"_s4", 0 0, L_0x8b88f0; 1 drivers
+v0x8b7760_0 .net *"_s40", 0 0, L_0x8b96a0; 1 drivers
+v0x8b7880_0 .net *"_s44", 0 0, L_0x8b9640; 1 drivers
+v0x8b7900_0 .net/s *"_s46", 0 0, C4<1>; 1 drivers
+v0x8b77e0_0 .net/s *"_s48", 0 0, C4<0>; 1 drivers
+v0x8b7a30_0 .net *"_s52", 1 0, L_0x8b9b50; 1 drivers
+v0x8b7980_0 .net *"_s55", 0 0, C4<0>; 1 drivers
+v0x8b7b70_0 .net *"_s56", 1 0, C4<01>; 1 drivers
+v0x8b7ad0_0 .net *"_s58", 0 0, L_0x8b9da0; 1 drivers
+v0x8b7cc0_0 .net *"_s6", 0 0, L_0x8b8950; 1 drivers
+v0x8b7c10_0 .net *"_s60", 0 0, L_0x8b9e90; 1 drivers
+v0x8b7e20_0 .net "a", 0 0, v0x8b8720_0; 1 drivers
+v0x8b7d60_0 .net "b", 0 0, v0x8b87a0_0; 1 drivers
+v0x8b7f90_0 .alias "v", 0 0, v0x8b8190_0;
+v0x8b7ea0_0 .alias "w", 0 0, v0x8b8440_0;
+v0x8b8110_0 .alias "x", 0 0, v0x8b84c0_0;
+v0x8b8010_0 .alias "y", 0 0, v0x8b8540_0;
+v0x8b82a0_0 .alias "z", 0 0, v0x8b85f0_0;
+L_0x8b8db0 .concat [ 1 1 0 0], v0x8b8720_0, C4<0>;
+L_0x8b8f20 .cmp/eq 2, L_0x8b8db0, C4<01>;
+L_0x8b9060 .concat [ 1 1 0 0], v0x8b87a0_0, C4<0>;
+L_0x8b91d0 .cmp/eq 2, L_0x8b9060, C4<01>;
+L_0x8b9970 .functor MUXZ 1, C4<0>, C4<1>, L_0x8b9640, C4<>;
+L_0x8b9b50 .concat [ 1 1 0 0], v0x8b8720_0, C4<0>;
+L_0x8b9da0 .cmp/eq 2, L_0x8b9b50, C4<01>;
+L_0x8ba000 .functor MUXZ 1, L_0x8b9e90, v0x8b87a0_0, L_0x8b9da0, C4<>;
+    .scope S_0x88f160;
+T_0 ;
+    %set/v v0x8b8720_0, 0, 1;
+    %set/v v0x8b87a0_0, 0, 1;
+    %vpi_call 2 25 "$display", "Time\011p q\011V  W  X  Y  Z\012";
+    %end;
+    .thread T_0;
+    .scope S_0x88f160;
+T_1 ;
+    %wait E_0x87b6c0;
+    %set/v v0x8b86a0_0, 0, 32;
+T_1.0 ;
+    %load/v 8, v0x8b86a0_0, 32;
+   %cmpi/s 8, 4, 32;
+    %jmp/0xz T_1.1, 5;
+    %delay 1, 0;
+    %vpi_call 2 33 "$display", "%3d\011%x %x\011%x  %x  %x  %x  %x\012", $time, v0x8b8720_0, v0x8b87a0_0, v0x8b8190_0, v0x8b8440_0, v0x8b84c0_0, v0x8b8540_0, v0x8b85f0_0;
+    %load/v 40, v0x8b87a0_0, 1;
+    %load/v 41, v0x8b8720_0, 1;
+    %mov 8, 40, 2;
+    %mov 10, 0, 30;
+   %addi 8, 1, 32;
+    %set/v v0x8b87a0_0, 8, 1;
+    %set/v v0x8b8720_0, 9, 1;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v0x8b86a0_0, 32;
+    %set/v v0x8b86a0_0, 8, 32;
+    %jmp T_1.0;
+T_1.1 ;
+    %vpi_call 2 36 "$finish";
+    %jmp T_1;
+    .thread T_1, $push;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "foo3.v";
