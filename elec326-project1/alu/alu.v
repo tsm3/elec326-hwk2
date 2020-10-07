@@ -133,12 +133,12 @@ module alu (
 		else if (load_or_store_pi) begin
 			reg_alu_result_po = reg1_data_pi + immediate_pi;
 		end 
-		reg_carry_out_po = stc_cmd_pi | carry_in_pi; // Or here and below?
-		reg_borrow_out_po = stb_cmd_pi | borrow_in_pi; // Or here and above?
+		// reg_carry_out_po = stc_cmd_pi | reg_carry_out_po; // Or here and below?
+		// reg_borrow_out_po = stb_cmd_pi | borrow_in_pi; // Or here and above?
 	end
 
 	assign alu_result_po = reg_alu_result_po;
-	assign carry_out_po = reg_carry_out_po;
-	assign borrow_out_po = reg_borrow_out_po;
+	assign carry_out_po = stc_cmd_pi | reg_carry_out_po; // One of these will always be 0, and below
+	assign borrow_out_po = stb_cmd_pi | borrow_in_pi;
 
 endmodule // alu
