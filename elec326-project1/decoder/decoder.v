@@ -160,49 +160,49 @@ module decoder(
 				reg_movi_lower_po = ~instruction_pi[8]; // Want LHS=1 when RHS=0
 				reg_movi_higher_po = instruction_pi[8]; // Want LHS=1 when RHS=1
 				//reg_destination_reg_po = instruction_pi[11:9];
-				reg_immediate_po = {4'b0000, instruction_pi[7:0]}; // Only 8 bit intermediate
+				//reg_immediate_po = {4'b0000, instruction_pi[7:0]}; // Only 8 bit intermediate
 			end
 			
 			`ADDI: begin
 				reg_addi_po = 1'b1;
 				//reg_destination_reg_po = instruction_pi[11:9];
 				//reg_source_reg1_po = instruction_pi[8:6];
-				reg_immediate_po = {6'd0, instruction_pi[5:0]};
+				//reg_immediate_po = {6'd0, instruction_pi[5:0]};
 			end
 
 			`SUBI: begin
 				reg_subi_po = 1'b1;
 				//reg_destination_reg_po = instruction_pi[11:9];
 				//reg_source_reg1_po = instruction_pi[8:6];
-				reg_immediate_po = {6'd0, instruction_pi[5:0]};
+				//reg_immediate_po = {6'd0, instruction_pi[5:0]};
 			end
 
 			`LOAD: begin
 				reg_load_po = 1'b1;
 				//reg_destination_reg_po = instruction_pi[11:9];
 				//reg_source_reg1_po = instruction_pi[8:6];
-				reg_immediate_po = {6'd0, instruction_pi[5:0]};
+				//reg_immediate_po = {6'd0, instruction_pi[5:0]};
 			end
 
 			`STOR: begin
 				reg_store_po = 1'b1;
 				//reg_destination_reg_po = instruction_pi[11:9];
 				//reg_source_reg1_po = instruction_pi[8:6];
-				reg_immediate_po = {6'd0, instruction_pi[5:0]};
+				//reg_immediate_po = {6'd0, instruction_pi[5:0]};
 			end
 
 			`BEQ: begin
 				reg_branch_eq_po = 1'b1;
 				reg_source_reg1_po = instruction_pi[11:9];
 				reg_source_reg2_po = instruction_pi[8:6];
-				reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
+				//reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
 			end
 
 			`BGE: begin
 				reg_branch_ge_po = 1'b1;
 				reg_source_reg1_po = instruction_pi[11:9];
 				reg_source_reg2_po = instruction_pi[8:6];
-				reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
+				//reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
 
 			end
 
@@ -210,13 +210,13 @@ module decoder(
 				reg_branch_le_po = 1'b1;
 				reg_source_reg1_po = instruction_pi[11:9];
 				reg_source_reg2_po = instruction_pi[8:6];
-				reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
+				//reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
 
 			end
 
 			`BC: begin
 				reg_branch_carry_po = 1'b1; // This one guarantees in[11:6] = 0
-				reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
+				//reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
 			end
 
 			`J: begin
