@@ -111,11 +111,11 @@ module decoder(
 
 	always @(*) begin
 
-		reg_alu_func_po = 3'b000;
-		reg_destination_reg_po = 3'b000;
-		reg_source_reg1_po = 3'b000;
-		reg_source_reg2_po = 3'b000;
-		reg_immediate_po = 12'b000000000000;
+		reg_alu_func_po = instruction_pi[2:0]; 
+		reg_destination_reg_po = instruction_pi[11:9];
+		reg_source_reg1_po = instruction_pi[8:6];
+		reg_source_reg2_po = instruction_pi[5:3];
+		reg_immediate_po = instruction_pi[11:0]; // Probably change this
 		reg_arith_2op_po = 1'b0;
 		reg_arith_1op_po = 1'b0;
 		reg_movi_lower_po = 1'b0;
@@ -134,7 +134,7 @@ module decoder(
 		reg_halt_cmd_po = 1'b0;
 		reg_rst_cmd_po = 1'b0;
 
-
+		
 		// Start by assigning all outputs to 0 and only change those necessary?? UPDATE: this is set in reg's above
 
 		case (OPCODE) // In this case, no default because we know OPCODEs span all 16 possibilities
@@ -143,52 +143,52 @@ module decoder(
 
 			`ARITH_2OP: begin
 				reg_arith_2op_po = 1'b1;
-				reg_destination_reg_po = instruction_pi[11:9];
-				reg_source_reg1_po = instruction_pi[8:6];
-				reg_source_reg2_po = instruction_pi[5:3];
-				reg_alu_func_po = instruction_pi[2:0];
+				//reg_destination_reg_po = instruction_pi[11:9];
+				//reg_source_reg1_po = instruction_pi[8:6];
+				//reg_source_reg2_po = instruction_pi[5:3];
+				//reg_alu_func_po = instruction_pi[2:0];
 			end
 
 			`ARITH_1OP: begin
 				reg_arith_1op_po = 1'b1;
-				reg_destination_reg_po = instruction_pi[11:9];
-				reg_source_reg1_po = instruction_pi[8:6]; // Source 2 is 3'b000, already set
-				reg_alu_func_po = instruction_pi[2:0];
+				//reg_destination_reg_po = instruction_pi[11:9];
+				//reg_source_reg1_po = instruction_pi[8:6]; // Source 2 is 3'b000, already set
+				//reg_alu_func_po = instruction_pi[2:0];
 			end
 
 			`MOVI: begin
 				reg_movi_lower_po = ~instruction_pi[8]; // Want LHS=1 when RHS=0
 				reg_movi_higher_po = instruction_pi[8]; // Want LHS=1 when RHS=1
-				reg_destination_reg_po = instruction_pi[11:9];
+				//reg_destination_reg_po = instruction_pi[11:9];
 				reg_immediate_po = {4'b0000, instruction_pi[7:0]}; // Only 8 bit intermediate
 			end
 			
 			`ADDI: begin
 				reg_addi_po = 1'b1;
-				reg_destination_reg_po = instruction_pi[11:9];
-				reg_source_reg1_po = instruction_pi[8:6];
+				//reg_destination_reg_po = instruction_pi[11:9];
+				//reg_source_reg1_po = instruction_pi[8:6];
 				reg_immediate_po = {6'd0, instruction_pi[5:0]};
 			end
 
 			`SUBI: begin
 				reg_subi_po = 1'b1;
-				reg_destination_reg_po = instruction_pi[11:9];
-				reg_source_reg1_po = instruction_pi[8:6];
+				//reg_destination_reg_po = instruction_pi[11:9];
+				//reg_source_reg1_po = instruction_pi[8:6];
 				reg_immediate_po = {6'd0, instruction_pi[5:0]};
 			end
 
 			`LOAD: begin
 				reg_load_po = 1'b1;
-				reg_destination_reg_po = instruction_pi[11:9];
-				reg_source_reg1_po = instruction_pi[8:6];
-				reg_immediate_po = instruction_pi[5:0];
+				//reg_destination_reg_po = instruction_pi[11:9];
+				//reg_source_reg1_po = instruction_pi[8:6];
+				reg_immediate_po = {6'd0, instruction_pi[5:0]};
 			end
 
 			`STOR: begin
 				reg_store_po = 1'b1;
-				reg_destination_reg_po = instruction_pi[11:9];
-				reg_source_reg1_po = instruction_pi[8:6];
-				reg_immediate_po = instruction_pi[5:0];
+				//reg_destination_reg_po = instruction_pi[11:9];
+				//reg_source_reg1_po = instruction_pi[8:6];
+				reg_immediate_po = {6'd0, instruction_pi[5:0]};
 			end
 
 			`BEQ: begin
