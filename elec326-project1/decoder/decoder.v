@@ -110,6 +110,31 @@ module decoder(
 	reg reg_rst_cmd_po = 1'b0;
 
 	always @(*) begin
+
+		reg_alu_func_po = 3'b000;
+		reg_destination_reg_po = 3'b000;
+		reg_source_reg1_po = 3'b000;
+		reg_source_reg2_po = 3'b000;
+		reg_immediate_po = 12'b000000000000;
+		reg_arith_2op_po = 1'b0;
+		reg_arith_1op_po = 1'b0;
+		reg_movi_lower_po = 1'b0;
+		reg_movi_higher_po = 1'b0;
+		reg_addi_po = 1'b0;
+		reg_subi_po = 1'b0;
+		reg_load_po = 1'b0;
+		reg_store_po = 1'b0;
+		reg_branch_eq_po = 1'b0;
+		reg_branch_ge_po = 1'b0;
+		reg_branch_le_po = 1'b0;
+		reg_branch_carry_po = 1'b0;
+		reg_jump_po = 1'b0;
+		reg_stc_cmd_po = 1'b0;
+		reg_stb_cmd_po = 1'b0;
+		reg_halt_cmd_po = 1'b0;
+		reg_rst_cmd_po = 1'b0;
+
+
 		// Start by assigning all outputs to 0 and only change those necessary?? UPDATE: this is set in reg's above
 
 		case (OPCODE) // In this case, no default because we know OPCODEs span all 16 possibilities
