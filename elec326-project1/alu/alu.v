@@ -77,6 +77,7 @@ module alu (
 
 
 	always @(*) begin
+    reg_alu_result_po = 16'd0;
 		reg_carry_out_po = carry_in_pi; // what if carry in is 1 -> that's ADDC, but how know if set carry???
 		reg_borrow_out_po = borrow_in_pi;
 
@@ -139,6 +140,6 @@ module alu (
 
 	assign alu_result_po = reg_alu_result_po;
 	assign carry_out_po = stc_cmd_pi | reg_carry_out_po; // One of these will always be 0, and below
-	assign borrow_out_po = stb_cmd_pi | borrow_in_pi;
+	assign borrow_out_po = stb_cmd_pi | reg_borrow_out_po;
 
 endmodule // alu
