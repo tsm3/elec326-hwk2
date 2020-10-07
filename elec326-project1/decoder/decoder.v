@@ -244,12 +244,12 @@ module decoder(
 	assign arith_2op_po = reg_arith_2op_po;
 	assign arith_1op_po = reg_arith_1op_po;
 	assign movi_lower_po = reg_movi_lower_po;
-	assign movi_higher_po = reg_movi_lower_po;
+	assign movi_higher_po = reg_movi_higher_po;
 	assign addi_po = reg_addi_po;
 	assign subi_po = reg_subi_po;
 	assign load_po = reg_load_po;
 	assign store_po = reg_store_po;
-	assign branch_eq_po = reg_branch_carry_po;
+	assign branch_eq_po = reg_branch_eq_po;
 	assign branch_ge_po = reg_branch_ge_po;
 	assign branch_le_po = reg_branch_le_po;
 	assign branch_carry_po = reg_branch_carry_po;
