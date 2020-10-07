@@ -1,0 +1,39 @@
+You  should have three subdirectories "decoder", "alu", and "branch".
+Develop the modules in that order. You can check each module as shown below.
+
+
+To test module "decoder":
+-----------------
+Connect to the "decoder" subdirectory
+
+% iv decoder.v tb_decoder.v -o decoderx
+% ./decoderx > out
+
+Output will be redirected to file "out"
+
+You can examine the file using "more" or "less" commands.
+Compare against the expected results using the "diff" command.
+
+% diff out results_decoder
+No output is good news.  All tested cases match!!
+
+
+To test module "alu":
+----------------------
+Connect to the "alu" subdirectory
+Copy your working "decoder.v" file to the "alu" subdirectory.
+
+% iv decoder.v regfile.v alu.v  tb_alu.v -o alux
+% ./alux > out
+% diff out results_alu
+
+To test module "branch":
+------------------------
+Connect to te "branch" subdirectory
+Copy your working "decoder.v" and "alu.v" files to the "branch" subdirectory.
+
+% iv decoder.v regfile.v alu.v branch.v tb_branch.v -o branchx 
+% ./branchx > out
+% diff out results_branch
+
+

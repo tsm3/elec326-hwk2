@@ -43,6 +43,10 @@ module sm_adder_s( input wire [4:0] a, b, output wire [4:0] SUM, output wire OVF
    //mux2 muxX(X4cIN, a[3:0], ~a[3:0], X2); // Don't need this MUX becasue of the XOR below
    assign X2 = a[3:0] ^ {4{X4cIN}}; // {n{m}} concatenates n copies of m, so this would be a 4 bit long extension of X4cIN (this would flip 'a' if it was decided to 2s complement it above), else X2 = a[3:0]
 
+   //I realized somewhat late that we might not be allowed to use the {n{m}} operator, but I already wrote my schematic using this XOR gate
+   //however, if you were to comment out the X2 and Y2 declarations that exist now and replace them with the MUXs above them, it should work the exact same
+   //alternatively, I could swap the XORs for the MUXs and resubmit if you'd prefer, but then it wouldn't align with my schematic
+
    //mux2 muxY(Y4cIN, b[3:0], ~b[3:0], Y2); // Don't need this MUX because of the XOR below
    assign Y2 = b[3:0] ^ {4{Y4cIN}}; // this would flip 'b' if it was decided to 2s complement it above, else assigns b[3:0] to Y2
 
