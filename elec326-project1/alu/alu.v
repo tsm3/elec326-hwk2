@@ -78,11 +78,11 @@ module alu (
 
 	always @(*) begin
     reg_alu_result_po = 16'd0;
-		reg_carry_out_po = carry_in_pi; // what if carry in is 1 -> that's ADDC, but how know if set carry???
+		reg_carry_out_po = carry_in_pi; // what if carry in is 1 -> that's ADDC, but how know if set carry??? always set
 		reg_borrow_out_po = borrow_in_pi;
 
 		if (arith_2op_pi) begin
-			case (alu_func_pi) // Don't need a default here because the functions span all possibilities for 3 bits
+			case (alu_func_pi) // Don't need a default here because the functions span all possibilities for 3 bits -> 2^3=8
 				`ADD: begin
 					{reg_carry_out_po, reg_alu_result_po} = reg1_data_pi + reg2_data_pi; // Should I set here?? also see ADDC
 				end
@@ -114,6 +114,8 @@ module alu (
 				`XNOR : begin
 					reg_alu_result_po = reg1_data_pi ~^ reg2_data_pi;
 				end
+
+				default: reg_alu_result_po = 16'b0; //Can never happen, but
 				
 			endcase
 		end 
@@ -123,6 +125,7 @@ module alu (
 				`SHIFTL: reg_alu_result_po = reg1_data_pi << 1;
 				`SHIFTR: reg_alu_result_po = reg1_data_pi >> 1;
 				`CP: reg_alu_result_po = reg1_data_pi;
+				default: reg_alu_result_po = 16'b0; // We just need some default, though it should never happen
 			endcase
 		end
 		else if (addi_pi) begin
@@ -134,12 +137,11 @@ module alu (
 		else if (load_or_store_pi) begin
 			reg_alu_result_po = reg1_data_pi + immediate_pi;
 		end 
-		// reg_carry_out_po = stc_cmd_pi | reg_carry_out_po; // Or here and below?
-		// reg_borrow_out_po = stb_cmd_pi | borrow_in_pi; // Or here and above?
+		else reg_alu_result_po = 16'b0;
 	end
 
 	assign alu_result_po = reg_alu_result_po;
-	assign carry_out_po = stc_cmd_pi | reg_carry_out_po; // One of these will always be 0, and below
+	assign carry_out_po = stc_cmd_pi | reg_carry_out_po; // At least one of these will always be 0, and below
 	assign borrow_out_po = stb_cmd_pi | reg_borrow_out_po;
 
 endmodule // alu

@@ -83,7 +83,7 @@ module decoder(
 
 
 	// Me: I'm hesitant to think this always shit works tbh
-	wire[3:0] OPCODE = instruction_pi[15:12]; // Don't know if this should be wire or reg or what, can always just put this in the case statement instead of "OPCODE"
+	wire[3:0] OPCODE = instruction_pi[15:12]; // for quality of life
 
 
 	reg[2:0] reg_alu_func_po = 3'b000; // Do these [] work??
@@ -144,6 +144,10 @@ module decoder(
 		if ((OPCODE == `BEQ) || (OPCODE == `BGE) || (OPCODE == `BLE) || (OPCODE == `BC)) begin
 			reg_source_reg1_po = instruction_pi[11:9];
 			reg_source_reg2_po = instruction_pi[8:6];
+		end else begin // I feel like my thing should still be combinatorial even without this else statement since these values are already defined
+					   // BUT I'm adding it out of caution
+			reg_source_reg1_po = instruction_pi[8:6];
+			reg_source_reg2_po = instruction_pi[5:3];
 		end
 
 		// Start by assigning all outputs to 0 and only change those necessary?? UPDATE: this is set in reg's above
