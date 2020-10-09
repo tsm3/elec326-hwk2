@@ -115,125 +115,38 @@ module decoder(
 		reg_destination_reg_po = instruction_pi[11:9];
 		reg_source_reg1_po = instruction_pi[8:6];
 		reg_source_reg2_po = instruction_pi[5:3];
-		reg_immediate_po = instruction_pi[11:0]; // Probably change this
-		reg_arith_2op_po = 1'b0;
-		reg_arith_1op_po = 1'b0;
-		reg_movi_lower_po = 1'b0;
-		reg_movi_higher_po = 1'b0;
-		reg_addi_po = 1'b0;
-		reg_subi_po = 1'b0;
-		reg_load_po = 1'b0;
-		reg_store_po = 1'b0;
-		reg_branch_eq_po = 1'b0;
-		reg_branch_ge_po = 1'b0;
-		reg_branch_le_po = 1'b0;
-		reg_branch_carry_po = 1'b0;
-		reg_jump_po = 1'b0;
-		reg_stc_cmd_po = 1'b0;
-		reg_stb_cmd_po = 1'b0;
-		reg_halt_cmd_po = 1'b0;
-		reg_rst_cmd_po = 1'b0;
+		reg_immediate_po = instruction_pi[11:0]; 
 
-		
+		reg_arith_2op_po = OPCODE == `ARITH_2OP;
+		reg_arith_1op_po = OPCODE == `ARITH_1OP;
+		reg_movi_lower_po = (OPCODE == `MOVI) & ~instruction_pi[8];
+		reg_movi_higher_po = (OPCODE == `MOVI) & instruction_pi[8];
+		reg_addi_po = OPCODE == `ADDI;
+		reg_subi_po = OPCODE == `SUBI;
+		reg_load_po = OPCODE == `LOAD;
+		reg_store_po = OPCODE == `STOR;
+
+		reg_branch_eq_po = OPCODE == `BEQ;
+		reg_branch_ge_po = OPCODE == `BGE;
+		reg_branch_le_po = OPCODE == `BLE;
+		reg_branch_carry_po = OPCODE == `BC;
+
+		reg_jump_po = OPCODE == `J;
+		reg_stc_cmd_po = (OPCODE == `CONTROL) && (instruction_pi[11:0] == `STC);
+		reg_stb_cmd_po = (OPCODE == `CONTROL) && (instruction_pi[11:0] == `STB);
+		reg_rst_cmd_po = (OPCODE == `CONTROL) && (instruction_pi[11:0] == `RESET);
+		reg_halt_cmd_po = (OPCODE == `CONTROL) && (instruction_pi[11:0] == `HALT);
+
+
+		// If any branch code, we must change where RS1 and RS2 are
+		// RS1 and RD will be same, RS2 will be normal RS1
+
+		if ((OPCODE == `BEQ) || (OPCODE == `BGE) || (OPCODE == `BLE) || (OPCODE == `BC)) begin
+			reg_source_reg1_po = instruction_pi[11:9];
+			reg_source_reg2_po = instruction_pi[8:6];
+		end
+
 		// Start by assigning all outputs to 0 and only change those necessary?? UPDATE: this is set in reg's above
-
-		case (OPCODE) // In this case, no default because we know OPCODEs span all 16 possibilities
-			
-			//`NOP: do nothing?;
-
-			`ARITH_2OP: begin
-				reg_arith_2op_po = 1'b1;
-				//reg_destination_reg_po = instruction_pi[11:9];
-				//reg_source_reg1_po = instruction_pi[8:6];
-				//reg_source_reg2_po = instruction_pi[5:3];
-				//reg_alu_func_po = instruction_pi[2:0];
-			end
-
-			`ARITH_1OP: begin
-				reg_arith_1op_po = 1'b1;
-				//reg_destination_reg_po = instruction_pi[11:9];
-				//reg_source_reg1_po = instruction_pi[8:6]; // Source 2 is 3'b000, already set
-				//reg_alu_func_po = instruction_pi[2:0];
-			end
-
-			`MOVI: begin
-				reg_movi_lower_po = ~instruction_pi[8]; // Want LHS=1 when RHS=0
-				reg_movi_higher_po = instruction_pi[8]; // Want LHS=1 when RHS=1
-				//reg_destination_reg_po = instruction_pi[11:9];
-				//reg_immediate_po = {4'b0000, instruction_pi[7:0]}; // Only 8 bit intermediate
-			end
-			
-			`ADDI: begin
-				reg_addi_po = 1'b1;
-				//reg_destination_reg_po = instruction_pi[11:9];
-				//reg_source_reg1_po = instruction_pi[8:6];
-				//reg_immediate_po = {6'd0, instruction_pi[5:0]};
-			end
-
-			`SUBI: begin
-				reg_subi_po = 1'b1;
-				//reg_destination_reg_po = instruction_pi[11:9];
-				//reg_source_reg1_po = instruction_pi[8:6];
-				//reg_immediate_po = {6'd0, instruction_pi[5:0]};
-			end
-
-			`LOAD: begin
-				reg_load_po = 1'b1;
-				//reg_destination_reg_po = instruction_pi[11:9];
-				//reg_source_reg1_po = instruction_pi[8:6];
-				//reg_immediate_po = {6'd0, instruction_pi[5:0]};
-			end
-
-			`STOR: begin
-				reg_store_po = 1'b1;
-				//reg_destination_reg_po = instruction_pi[11:9];
-				//reg_source_reg1_po = instruction_pi[8:6];
-				//reg_immediate_po = {6'd0, instruction_pi[5:0]};
-			end
-
-			`BEQ: begin
-				reg_branch_eq_po = 1'b1;
-				reg_source_reg1_po = instruction_pi[11:9];
-				reg_source_reg2_po = instruction_pi[8:6];
-				//reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
-			end
-
-			`BGE: begin
-				reg_branch_ge_po = 1'b1;
-				reg_source_reg1_po = instruction_pi[11:9];
-				reg_source_reg2_po = instruction_pi[8:6];
-				//reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
-
-			end
-
-			`BLE: begin
-				reg_branch_le_po = 1'b1;
-				reg_source_reg1_po = instruction_pi[11:9];
-				reg_source_reg2_po = instruction_pi[8:6];
-				//reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
-
-			end
-
-			`BC: begin
-				reg_branch_carry_po = 1'b1; // This one guarantees in[11:6] = 0
-				reg_source_reg2_po = 3'b000; // Manually fixing, not sure what I'm really supposed to do here
-				//reg_immediate_po = {6'd0, instruction_pi[5:0]}; // I don't know what they mean about the signed shit, but I think I just throw it out here
-			end
-
-			`J: begin
-				reg_jump_po = 1'b1;
-				reg_immediate_po = instruction_pi[11:0]; // See above comments about signed ints for immediate
-			end
-
-			`CONTROL: case (instruction_pi[11:0]) // This one says exactly what in[11:0] is
-				`STC: reg_stc_cmd_po = 1'b1;
-				`STB: reg_stb_cmd_po = 1'b1;
-				`RESET: reg_rst_cmd_po = 1'b1;
-				`HALT: reg_halt_cmd_po = 1'b1;
-			endcase
-
-			 
-		endcase
 
 	end
 
