@@ -60,17 +60,52 @@ parameter NUM_REG = 8;
 
    // Use "assign" statements to set the output port variables of this  (i.e."regfile") module.
    // For convenience, all output port variables have the suffix "_po" and inpput port variables the suffic "_pi".
- 
-
-
+   assign current_borrow_po = flag_borrow;
+   assign current_carry_po = flag_carry;
+   assign reg1_data_po = regfile[source_reg1_pi];
+   assign reg2_data_po = regfile[source_reg2_pi];
+   assign regD_data_po = regfile[destination_reg_pi];
 
 
    
    // Code up the logic for updating the components of  regfile using an "always" block triggered by the positive edge 
    // of the clock signal "clock_pi"
 
-   always @(posedge clock_pi) begin
-	   
+   always @(posedge clk_pi) begin
+	   if (clk_en_pi) begin
+
+		   // This is the reset logic
+		   if (reset_pi) begin
+			   for (i=0; i<8; i=i+1) begin
+				regfile[i] <= i;
+			end
+				flag_borrow <= 0;
+				flag_carry <= 0;
+		   end
+
+			// This is the everything else logic
+			else begin
+				
+				// Seemed to say that these update regardless of wr_destination_reg_pi
+				flag_borrow <= new_borrow_pi;
+				flag_carry <= new_carry_pi;
+
+				if (movi_higher_pi) begin
+					regfile[destination_reg_pi][15:8] <= immediate_pi;
+				end else if (movi_lower_pi) begin
+					regfile[destination_reg_pi][7:0] <= immediate_pi;
+				end
+				
+
+				//Updates the destination register with dest_result_data_pi
+				if (wr_destination_reg_pi) begin
+					regfile[destination_reg_pi] <= dest_result_data_pi;
+				end
+			   
+			end
+
+		   
+	   end
    end
 
    
