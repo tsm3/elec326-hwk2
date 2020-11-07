@@ -42,9 +42,20 @@ parameter NUM_REG = 8;
 //   the current carry_in and borrow_in values to the ALU.
    
 
-   
+	reg[15:0] regfile[0:7];
+	reg flag_carry, flag_borrow;
 
-   integer 		       i;  // Used in "for loop (see below)
+   integer i;  // Used in "for loop (see below)
+   
+   initial begin
+	   for (i=0; i<8; i=i+1) begin
+		   regfile[i] = i;
+	   end
+		flag_borrow = 0;
+		flag_carry = 0;
+   end
+
+   
     
 
    // Use "assign" statements to set the output port variables of this  (i.e."regfile") module.
@@ -57,6 +68,10 @@ parameter NUM_REG = 8;
    
    // Code up the logic for updating the components of  regfile using an "always" block triggered by the positive edge 
    // of the clock signal "clock_pi"
+
+   always @(posedge clock_pi) begin
+	   
+   end
 
    
    /* Reset Code */
