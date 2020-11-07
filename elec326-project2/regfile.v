@@ -55,9 +55,6 @@ parameter NUM_REG = 8;
 		flag_carry = 0;
    end
 
-   
-    
-
    // Use "assign" statements to set the output port variables of this  (i.e."regfile") module.
    // For convenience, all output port variables have the suffix "_po" and inpput port variables the suffic "_pi".
    assign current_borrow_po = flag_borrow;
@@ -94,17 +91,12 @@ parameter NUM_REG = 8;
 					regfile[destination_reg_pi][15:8] <= immediate_pi;
 				end else if (movi_lower_pi) begin
 					regfile[destination_reg_pi][7:0] <= immediate_pi;
-				end else if (wr_destination_reg_pi) begin
+
+				end else if (wr_destination_reg_pi) begin //Updates the destination register with dest_result_data_pi (only if there isn't a "MOVE" command)
 					regfile[destination_reg_pi] <= dest_result_data_pi;
 				end
 				
-
-				//Updates the destination register with dest_result_data_pi
-				
-			   
 			end
-
-		   
 	   end
    end
 
@@ -132,9 +124,6 @@ parameter NUM_REG = 8;
    // If "clk_en_pi" is TRUE and the write enable signal ("wr_destination_reg_pi") is asserted,
    // the specified register in the register file must be updated with the appropriate input 
    // data.
-   
-  
-
 
 endmodule
 
