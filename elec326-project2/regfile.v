@@ -94,13 +94,13 @@ parameter NUM_REG = 8;
 					regfile[destination_reg_pi][15:8] <= immediate_pi;
 				end else if (movi_lower_pi) begin
 					regfile[destination_reg_pi][7:0] <= immediate_pi;
+				end else if (wr_destination_reg_pi) begin
+					regfile[destination_reg_pi] <= dest_result_data_pi;
 				end
 				
 
 				//Updates the destination register with dest_result_data_pi
-				if (wr_destination_reg_pi) begin
-					regfile[destination_reg_pi] <= dest_result_data_pi;
-				end
+				
 			   
 			end
 
