@@ -1,0 +1,23 @@
+module mysFlops_tb;   // Testbench program to  exercise your design with input test vectors
+
+   
+
+   wire[1:0] H;                     // Variables that will be assigned values in this testbench
+   reg X1;
+   integer i, j;
+   reg CLKs;
+      
+
+mysFlops test(X1, CLKs, H);   
+
+   always begin     
+       
+          for (j=0; j < 2; j= j+1) begin
+            X1 = j;
+            for (i=0; i < 12; i= i+1) begin
+                #3; CLKs = (i % 2);
+            end
+          end         
+      $finish;      
+   end
+endmodule // bin2BCD_tb
