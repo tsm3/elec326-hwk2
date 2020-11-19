@@ -26,33 +26,40 @@ module  babysnail_moore(input wire reset, clk, x_pi, output wire y_po);
 
       case (state[0:3])         
          `zero : begin
-            state[0:3] <= {state[1:3], x_pi}; // Append x_pi to right
+            state[0:3] <= x_pi ? 4'b0001 : `zero; // Append x_pi to right
+            // state[0:3] <= {state[1:3], x_pi}; // Append x_pi to right
             out <= 1'b0;
          end
          4'b0001: begin
-            state[0:3] <= x_pi ? {state[1:3], x_pi} : `zero;
+            state[0:3] <= x_pi ? 4'b0011 : `zero;
+            // state[0:3] <= x_pi ? {state[1:3], x_pi} : `zero;
             out <= 1'b0;
          end
          4'b0011: begin 
-            state[0:3] <= {state[1:3], x_pi}; // Append x_pi to right
+            state[0:3] <= x_pi ? 4'b0111 : 4'b0110; // Append x_pi to right
+            // state[0:3] <= {state[1:3], x_pi}; // Append x_pi to right
             out <= 1'b0;
          end
          4'b0111: begin
-            state[0:3] <= x_pi ? state[0:3] : {state[1:3], x_pi};
+            state[0:3] <= x_pi ? 4'b0111 : 4'b1110;
+            // state[0:3] <= x_pi ? state[0:3] : {state[1:3], x_pi};
             out <= 1'b0;
          end
          4'b0110: begin 
-            state[0:3] <= x_pi ? {state[1:3], x_pi} : `zero;
+            state[0:3] <= x_pi ? 4'b1101 : `zero;
+            // state[0:3] <= x_pi ? {state[1:3], x_pi} : `zero;
             out <= 1'b0;
          end
          4'b1110: begin
-            state[0:3] <= x_pi ? {state[1:3], x_pi} : `zero;
+            state[0:3] <= x_pi ? 4'b1101 : `zero;
+            // state[0:3] <= x_pi ? {state[1:3], x_pi} : `zero;
             out <= 1'b1;
          end
          4'b1101: begin
             state[0:3] <= x_pi ? 4'b0011 : `zero;
             out <= 1'b1;
          end
+         default : $display("help");
       endcase
 
 
