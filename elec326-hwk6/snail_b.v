@@ -18,7 +18,7 @@ module  babysnail_moore(input wire reset, clk, x_pi, output wire y_po);
       if (reset) begin
          state[0:3] <= `zero;
          out <= 1'b0;
-      end
+      end else begin
 
       #1; 	// Delay of 1 time unit to model the  propagation delay from clock to FF outputs. Do not remove.
       
@@ -64,7 +64,7 @@ module  babysnail_moore(input wire reset, clk, x_pi, output wire y_po);
 
 
 
-
+      end
    end
    
 // Use "assign" statement to set output y_po
