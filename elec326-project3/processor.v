@@ -33,6 +33,9 @@ module processor (
 	wire is_branch_taken_wire;
 	//Data Memory
 	wire[15:0] rdata_wire;
+ 
+  wire[15:0] data_mem_data;
+  assign data_mem_data = 16'hFFFF;
 
 	//See declaration in tb_regfile.v
 	wire wr_destination_reg_bool_wire; // Bool
@@ -105,7 +108,7 @@ module processor (
 		.source_reg2_pi(source_reg2_wire),
 		.destination_reg_pi(destination_reg_wire),
 		.wr_destination_reg_pi(wr_destination_reg_bool_wire), // Help
-		.dest_result_data_pi(alu_result_wire), // Hmm // This is part of how it's declared in tb_regfile.v
+		.dest_result_data_pi(alu_result_wire), // Hmm // This is part of how it's declared in tb_regfile.v // This is involved in my Problem with LD
 		.movi_lower_pi(movi_lower_wire),
 		.movi_higher_pi(movi_higher_wire),
 		.immediate_pi(immediate_wire[7:0]), //Fixed bitlength here after the compiler bitched
