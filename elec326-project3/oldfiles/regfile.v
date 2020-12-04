@@ -49,7 +49,7 @@ parameter NUM_REG = 8;
    
    initial begin
 	   for (i=0; i<8; i=i+1) begin
-		   regfile[i] = i;
+		   regfile[i] = 0;
 	   end
 		flag_borrow = 0;
 		flag_carry = 0;
@@ -74,7 +74,7 @@ parameter NUM_REG = 8;
 		   // This is the reset logic
 		   if (reset_pi) begin
 			   for (i=0; i<8; i=i+1) begin
-				regfile[i] <= i;
+				regfile[i] <= 0;
 			end
 				flag_borrow <= 0;
 				flag_carry <= 0;
@@ -124,6 +124,12 @@ parameter NUM_REG = 8;
    // If "clk_en_pi" is TRUE and the write enable signal ("wr_destination_reg_pi") is asserted,
    // the specified register in the register file must be updated with the appropriate input 
    // data.
+
+       always @(posedge clk_pi) begin   
+  		#1;       $display("REG_FILE::\tTime: %3d+\tCARRY Flag: %1b\tBORROW Flag: %1b", $time-1, flag_carry, flag_borrow);
+       for (i=0; i < NUM_REG; i = i+1)
+          $display("REG_FILE[%1d]: %x", i, regfile[i]);
+	   end
 
 endmodule
 

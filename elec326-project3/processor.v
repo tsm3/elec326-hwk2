@@ -108,7 +108,7 @@ module processor (
 		.dest_result_data_pi(alu_result_wire), // Hmm // This is part of how it's declared in tb_regfile.v
 		.movi_lower_pi(movi_lower_wire),
 		.movi_higher_pi(movi_higher_wire),
-		.immediate_pi(immediate_wire),
+		.immediate_pi(immediate_wire[7:0]), //Fixed bitlength here after the compiler bitched
 		.new_carry_pi(carry_out_wire), //Help // Comes from ALU -> DOC
 		.new_borrow_pi(borrow_out_wire), //Help // Comes from ALU -> DOC
 		.reg1_data_po(reg1_data_wire),
@@ -127,7 +127,7 @@ module processor (
 		.load_or_store_pi(load_wire||store_wire), //Help // This is how this is in tb_regfile.v
 		.reg1_data_pi(reg1_data_wire),
 		.reg2_data_pi(reg2_data_wire),
-		.immediate_pi(immediate_wire),
+		.immediate_pi(immediate_wire[5:0]), //Fixed bitlength here after compiler bitched
 		.stc_cmd_pi(stc_cmd_wire),
 		.stb_cmd_pi(stb_cmd_wire),
 		.carry_in_pi(current_carry_wire), //Help
