@@ -154,7 +154,7 @@ module processor (
 		.reset_pi(rst_cmd_wire || CPU_RESET_pi), //HELP
 		.write_pi(store_wire), //!!?? seems like this should only be 1 when it's a store code
 		.wdata_pi(regD_data_wire), // idk, but it is 16 bits
-		.addr_pi(reg1_data_wire + {{10{immediate_wire[5]}},immediate_wire[5:0]}), // This is only 3 bits, where it wants 16, though it only uses 8 in data_mem?
+		.addr_pi(reg1_data_wire + immediate_wire[5:0]), // This is only 3 bits, where it wants 16, though it only uses 8 in data_mem?
 		.rdata_po(rdata_wire)
 	);
 	//Done before me
