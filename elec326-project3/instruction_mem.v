@@ -67,7 +67,7 @@ always @(pc_pi)  begin
  
 // Comment out $display statement for Fibonacci
 
-  //#5;      $display("\nINS_MEM:\tTime:%3d\tPC: %2d\tInstruction: %x", $time, pc_pi, instruction_po);
+  #5;      $display("\nINS_MEM:\tTime:%3d\tPC: %2d\tInstruction: %x", $time, pc_pi, instruction_po);
 
 
 end
