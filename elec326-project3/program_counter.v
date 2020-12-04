@@ -19,9 +19,9 @@ module program_counter (
 
    reg [15:0] 		      PC;  // Program Counter   
    
-       initial
-	PC <= 16'hFFFF;  // Do not remove. Assumed by the Testbench and results files.
-
+	initial begin
+		PC <= 16'hFFFF;  // Do not remove. Assumed by the Testbench and results files.
+	end
 
 
 	always @(posedge clk_pi) begin
@@ -41,7 +41,7 @@ module program_counter (
 		end
 	end
    
-
+	assign pc_po = PC;
 endmodule
 
 

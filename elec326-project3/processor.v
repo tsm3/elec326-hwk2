@@ -152,7 +152,7 @@ module processor (
 		.clk_pi(CLK_pi),
 		.clk_en_pi(cpu_clk_en),
 		.reset_pi(rst_cmd_wire || CPU_RESET_pi), //HELP
-		.write_pi(wr_destination_reg_bool_wire), //!!??
+		.write_pi(store_wire), //!!??
 		.wdata_pi(alu_result_wire), // idk, but it is 16 bits
 		.addr_pi(destination_reg_wire), // This is only 3 bits, where it wants 16
 		.rdata_po(rdata_wire)
