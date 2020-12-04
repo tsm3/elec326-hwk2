@@ -52,7 +52,7 @@ module processor (
 // Data Memory
 
 	//done
-	procount program_counter(
+	program_counter program_counter(
 		.clk_pi(CLK_pi),
 		.clk_en_pi(cpu_clk_en),
 		.reset_pi(CPU_RESET_pi),
@@ -66,7 +66,7 @@ module processor (
 
 	);
 	//Done
-	insmem instruction_mem(
+	instruction_mem instruction_mem(
 		.pc_pi(PC_wire),
 		.instruction_po(ins_wire)
 	);
@@ -148,7 +148,7 @@ module processor (
 		.is_branch_taken_po(is_branch_taken_wire)
 	);
 	//Not Done
-	datamem data_mem(
+	data_mem data_mem(
 		.clk_pi(CLK_pi),
 		.clk_en_pi(cpu_clk_en),
 		.reset_pi(rst_cmd_wire || CPU_RESET_pi), //HELP
