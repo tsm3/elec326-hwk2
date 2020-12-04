@@ -1,0 +1,18 @@
+CHANGES needed to your "regfile" module.
+
+1. Change your "regfile" code to set all registers to 0 on a reset as described in the DOCS of project 3.
+In project 2 we had initialized the registers  to non-zero values in order to use a more compact test bench program.
+
+2.  Add the following  code at the end of your "regfile" module to print out the contents of REGISTER_FILE.
+
+
+
+
+    always @(posedge clk_pi) begin   
+  #1;       $display("REG_FILE::\tTime: %3d+\tCARRY Flag: %1b\tBORROW Flag: %1b", $time-1, CARRY_FLAG, BORROW_FLAG);
+       for (i=0; i < NUM_REG; i = i+1)
+          $display("REG_FILE[%1d]: %x", i, REG_FILE[i]);
+end
+
+
+
