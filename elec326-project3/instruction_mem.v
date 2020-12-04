@@ -25,7 +25,7 @@ module instruction_mem(
 
 
 // TEST 1 PROGRAM (Array Sum) FOR STEP 3 (arraysum.asm)
-/*
+
       0: instruction = 16'b0011000000000100;        //           MOVIL $0, 4
       2: instruction = 16'b0011001000000000;       //            MOVIL   $1, 0
       4: instruction = 16'b0011010001000000;       //            MOVIL   $2, 0x40
@@ -42,12 +42,13 @@ module instruction_mem(
      26: instruction = 16'b0100001001000001;      //            ADDI $1, $1, 1
      28: instruction = 16'b1010001000110110;      //            BLE  $1, $0, LOOP2
      30: instruction = 16'b1111111111111111;      //            HALT
-*/
+
  
 // Uncomment this code for Fibonacci
 
 			
 // TEST 2 PROGRAM (Fib) for Step 3 (fib.asm)
+/*
      0: instruction = 16'b0011100000000000;    //          MOVIL   $4, 0 
      2: instruction = 16'b0011011000000001;    //          MOVIL   $3, 1
      4: instruction = 16'b0001010011100000;    //  FIB:    ADD $2 $3 $4
@@ -59,8 +60,9 @@ module instruction_mem(
 
  
     default: instruction = 16'h0;
+*/
    endcase
-      
+
    end
 
 always @(pc_pi)  begin

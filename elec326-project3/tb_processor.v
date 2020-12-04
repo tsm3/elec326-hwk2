@@ -1,7 +1,7 @@
 // Testbench
 module processor_testbench;
 
-   `define SIMULATION_TIME  1300  // Change to 1300 for Fibonacci (set to 550 for Array Sum)
+   `define SIMULATION_TIME  550  // Change to 1300 for Fibonacci (set to 550 for Array Sum)
 
 processor  myProcessor(
 .CLK_pi(clk),

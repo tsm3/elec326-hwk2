@@ -1332,7 +1332,7 @@ REG_FILE[5]: 0000
 REG_FILE[6]: 0000
 REG_FILE[7]: 0000
 
-INS_MEM:        Time:1210       PC: 16  Instruction: 0000
+INS_MEM:	Time:1210	PC: 16	Instruction: 0000
 REG_FILE::	Time: 1215+	CARRY Flag: 1	BORROW Flag: 0
 REG_FILE[0]: 0000
 REG_FILE[1]: 0000
@@ -1343,7 +1343,7 @@ REG_FILE[5]: 0000
 REG_FILE[6]: 0000
 REG_FILE[7]: 0000
 
-INS_MEM:        Time:1220       PC: 18  Instruction: 0000
+INS_MEM:	Time:1220	PC: 18	Instruction: 0000
 REG_FILE::	Time: 1225+	CARRY Flag: 1	BORROW Flag: 0
 REG_FILE[0]: 0000
 REG_FILE[1]: 0000
@@ -1354,7 +1354,7 @@ REG_FILE[5]: 0000
 REG_FILE[6]: 0000
 REG_FILE[7]: 0000
 
-INS_MEM:        Time:1230       PC: 20  Instruction: 0000
+INS_MEM:	Time:1230	PC: 20	Instruction: 0000
 REG_FILE::	Time: 1235+	CARRY Flag: 1	BORROW Flag: 0
 REG_FILE[0]: 0000
 REG_FILE[1]: 0000
@@ -1365,7 +1365,7 @@ REG_FILE[5]: 0000
 REG_FILE[6]: 0000
 REG_FILE[7]: 0000
 
-INS_MEM:        Time:1240       PC: 22  Instruction: 0000
+INS_MEM:	Time:1240	PC: 22	Instruction: 0000
 REG_FILE::	Time: 1245+	CARRY Flag: 1	BORROW Flag: 0
 REG_FILE[0]: 0000
 REG_FILE[1]: 0000
@@ -1376,7 +1376,7 @@ REG_FILE[5]: 0000
 REG_FILE[6]: 0000
 REG_FILE[7]: 0000
 
-INS_MEM:        Time:1250       PC: 24  Instruction: 0000
+INS_MEM:	Time:1250	PC: 24	Instruction: 0000
 REG_FILE::	Time: 1255+	CARRY Flag: 1	BORROW Flag: 0
 REG_FILE[0]: 0000
 REG_FILE[1]: 0000
@@ -1387,7 +1387,7 @@ REG_FILE[5]: 0000
 REG_FILE[6]: 0000
 REG_FILE[7]: 0000
 
-INS_MEM:        Time:1260       PC: 26  Instruction: 0000
+INS_MEM:	Time:1260	PC: 26	Instruction: 0000
 REG_FILE::	Time: 1265+	CARRY Flag: 1	BORROW Flag: 0
 REG_FILE[0]: 0000
 REG_FILE[1]: 0000
@@ -1398,7 +1398,7 @@ REG_FILE[5]: 0000
 REG_FILE[6]: 0000
 REG_FILE[7]: 0000
 
-INS_MEM:        Time:1270       PC: 28  Instruction: 0000
+INS_MEM:	Time:1270	PC: 28	Instruction: 0000
 REG_FILE::	Time: 1275+	CARRY Flag: 1	BORROW Flag: 0
 REG_FILE[0]: 0000
 REG_FILE[1]: 0000
@@ -1409,7 +1409,7 @@ REG_FILE[5]: 0000
 REG_FILE[6]: 0000
 REG_FILE[7]: 0000
 
-INS_MEM:        Time:1280       PC: 30  Instruction: 0000
+INS_MEM:	Time:1280	PC: 30	Instruction: 0000
 REG_FILE::	Time: 1285+	CARRY Flag: 1	BORROW Flag: 0
 REG_FILE[0]: 0000
 REG_FILE[1]: 0000
@@ -1420,7 +1420,7 @@ REG_FILE[5]: 0000
 REG_FILE[6]: 0000
 REG_FILE[7]: 0000
 
-INS_MEM:        Time:1290       PC: 32  Instruction: 0000
+INS_MEM:	Time:1290	PC: 32	Instruction: 0000
 REG_FILE::	Time: 1295+	CARRY Flag: 1	BORROW Flag: 0
 REG_FILE[0]: 0000
 REG_FILE[1]: 0000
@@ -1431,4 +1431,4 @@ REG_FILE[5]: 0000
 REG_FILE[6]: 0000
 REG_FILE[7]: 0000
 
-INS_MEM:        Time:1300       PC: 34  Instruction: 0000
+INS_MEM:	Time:1300	PC: 34	Instruction: 0000
