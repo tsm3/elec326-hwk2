@@ -33,9 +33,6 @@ module processor (
 	wire is_branch_taken_wire;
 	//Data Memory
 	wire[15:0] rdata_wire;
- 
-  wire[15:0] data_mem_data;
-  assign data_mem_data = 16'hFFFF;
 
 	//See declaration in tb_regfile.v
 	wire wr_destination_reg_bool_wire; // Bool

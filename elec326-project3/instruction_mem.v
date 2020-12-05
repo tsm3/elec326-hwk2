@@ -16,6 +16,10 @@ module instruction_mem(
 
    assign instruction_po = instruction;
 
+   initial begin
+      instruction <= 16'h0000;
+   end
+
    
    always @(pc_pi) begin  
    case(pc_pi)	     
