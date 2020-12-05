@@ -57,7 +57,7 @@ module processor (
 	//done
 	program_counter program_counter(
 		.clk_pi(CLK_pi),
-		.clk_en_pi(cpu_clk_en),
+		.clk_en_pi(cpu_clk_en && ~halt_cmd_wire),
 		.reset_pi(CPU_RESET_pi),
 
 		.branch_taken_pi(is_branch_taken_wire),
@@ -102,7 +102,7 @@ module processor (
 	//Not Done
 	regfile regfile(
 		.clk_pi(CLK_pi),
-		.clk_en_pi(cpu_clk_en),
+		.clk_en_pi(cpu_clk_en && ~halt_cmd_wire),
 		.reset_pi(rst_cmd_wire || CPU_RESET_pi), //HELP
 		.source_reg1_pi(source_reg1_wire),
 		.source_reg2_pi(source_reg2_wire),
@@ -153,7 +153,7 @@ module processor (
 	//Not Done
 	data_mem data_mem(
 		.clk_pi(CLK_pi),
-		.clk_en_pi(cpu_clk_en),
+		.clk_en_pi(cpu_clk_en && ~halt_cmd_wire),
 		.reset_pi(rst_cmd_wire || CPU_RESET_pi), //HELP
 		.write_pi(store_wire), //!!?? seems like this should only be 1 when it's a store code
 		.wdata_pi(regD_data_wire), // idk, but it is 16 bits
@@ -163,7 +163,7 @@ module processor (
 	//Done before me
 	clkdiv clock_divide(
 		.clk_pi(CLK_pi),
-		.clk_en_po(cpu_clk_en)
+		.clk_en_po(cpu_clk_en && ~halt_cmd_wire)
 	);
 
 endmodule 

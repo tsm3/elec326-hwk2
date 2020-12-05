@@ -28,6 +28,7 @@ module program_counter (
 		if (reset_pi) begin
 			//Reset stuff
 			PC <= 16'd0; // Make sure this is the right thing
+		end else if ()
 		end else begin // If not reset vv
 			if (clk_en_pi) begin
 				if (branch_taken_pi) begin
